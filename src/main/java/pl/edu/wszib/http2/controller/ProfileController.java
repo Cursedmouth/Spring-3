@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.edu.wszib.http2.service.ProfileService;
 import pl.edu.wszib.http2.service.exception.NotFoundException;
+import pl.edu.wszib.http2.service.model.Plec;
 import pl.edu.wszib.http2.service.model.Profile;
 
 import javax.validation.Valid;
@@ -36,14 +37,17 @@ public class ProfileController {
   }
 
   @GetMapping("/list")
-  public String listProfilesView(Model model) throws ParseException {
-    model.addAttribute("profiles", profileService.list());
+  public String listProfilesView(@RequestParam(required = false)Plec plec, Model model) throws ParseException {
+    model.addAttribute("profiles", profileService.list(plec));
+    model.addAttribute("plcie", Plec.values());
     return "list-profiles";
   }
 
   @GetMapping("/create")
   public String createProfileView(Model model) {
     model.addAttribute("newProfile", new Profile());
+    model.addAttribute("plcie", Plec.values());
+
     return "create-profile";
   }
 

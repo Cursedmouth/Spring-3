@@ -26,6 +26,11 @@
                 <div th:if="${#fields.hasErrors('nazwisko')}" th:errors="*{nazwisko}" class="alert alert-danger"></div>
             </div>
             <div class="form-group">
+                <label for="plec">Płeć</label>
+                <input id="plec" class="form-control" type="text" th:field="*{plec}">
+                <div th:if="${#fields.hasErrors('plec')}" th:errors="*{plec}" class="alert alert-danger"></div>
+            </div>
+            <div class="form-group">
                 <label for="dataUrodzenia">Data Urodzenia</label>
                 <input id="dataUrodzenia" class="form-control" type="date" th:field="*{dataUrodzenia}">
                 <div th:if="${#fields.hasErrors('dataUrodzenia')}" th:errors="*{dataUrodzenia}" class="alert alert-danger"></div>

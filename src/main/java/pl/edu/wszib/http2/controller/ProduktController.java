@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.edu.wszib.http2.service.ProduktService;
 import pl.edu.wszib.http2.service.ProfileService;
 import pl.edu.wszib.http2.service.exception.NotFoundException;
+import pl.edu.wszib.http2.service.model.Filtr;
 import pl.edu.wszib.http2.service.model.Produkt;
 import pl.edu.wszib.http2.service.model.Profile;
 
@@ -27,14 +28,15 @@ public class ProduktController {
     private ProduktService produktService;
 
     @GetMapping("/list")
-    public String listProductView(Model model) {
-        Produkt produkt = new Produkt();
-        /*produkt.setCena(4.5f);
-        produkt.setIlosc(56);
-        produkt.setNazwa("Domestos");
-        produktService.create(produkt);*/
+    public String listProductView(Filtr filtr, Model model) {
+        if(filtr == null) {
 
-        model.addAttribute("produkty", produktService.list());
+            model.addAttribute("produkty", produktService.list());
+            model.addAttribute("filtr", new Filtr());
+        } else {
+            model.addAttribute("produkty", produktService.list(filtr));
+            model.addAttribute("filtr", filtr);
+        }
         return "produkt/list-produkt";
     }
 

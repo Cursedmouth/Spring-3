@@ -11,26 +11,38 @@
     <div class="container">
         <h2>Profil:</h2>
         <form th:method="POST" th:action="@{/profile/create}" th:object="${newProfile}" enctype="multipart/form-data">
+
             <div class="form-group">
                 <label for="imie">Imie</label>
                 <input id="imie" class="form-control" type="text" th:field="*{imie}">
                 <div th:if="${#fields.hasErrors('imie')}" th:errors="*{imie}" class="alert alert-danger"></div>
             </div>
+
             <div class="form-group">
                 <label for="nazwisko">Nazwisko</label>
                 <input id="nazwisko" class="form-control" type="text" th:field="*{nazwisko}">
                 <div th:if="${#fields.hasErrors('nazwisko')}" th:errors="*{nazwisko}" class="alert alert-danger"></div>
             </div>
+
+            <div class="form-group">
+                <label for="plec">Wybierz Płeć</label>
+                <select id="plec" class="form-control" th:field="*{plec}">
+                    <option th:each="p : ${plcie}" th:value="${p}" th:text="${p}"></option></select>
+                <div th:if="${#fields.hasErrors('plec')}" th:errors="*{plec}" class="alert alert-danger"></div>
+            </div>
+
             <div class="form-group">
                 <label for="dataUrodzenia">Data Urodzenia</label>
                 <input id="dataUrodzenia" class="form-control" type="date" th:field="*{dataUrodzenia}">
                 <div th:if="${#fields.hasErrors('dataUrodzenia')}" th:errors="*{dataUrodzenia}" class="alert alert-danger"></div>
             </div>
+
             <div class="form-group">
                 <label for="zdjecie">Zdjecie</label>
                 <input id="zdjecie" class="form-control" type="file" name="file" accept="image/png">
                 <div th:if="${#fields.hasErrors('zdjecie')}" th:errors="*{zdjecie}" class="alert alert-danger"></div>
             </div>
+
             <div class="form-group">
                 <input type="submit" class="form-control btn btn-primary" value="Stwórz">
                 <input onclick='javascript:window.history.back()' value='Anuluj' type='button' class="form-control btn btn-secondary" />

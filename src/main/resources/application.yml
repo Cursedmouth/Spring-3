@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    username: pijarosa
+    password: Cracovia1906WSZIB4
+    url: jdbc:sqlserver://morfeusz.wszib.edu.pl:1433;databaseName=pijarosa
+  sql:
+    init:
+      mode: always
+  flyway:
+    #    user: wreczyck
+    #    password: <password>
+    #    url: jdbc:sqlserver://morfeusz.wszib.edu.pl:1433;databaseName=wreczyck
+    #    locations: classpath:db/migrations
+    #    schemas: [wreczyck]
+    enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

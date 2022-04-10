@@ -2,11 +2,25 @@ package pl.edu.wszib.http2.service.model;
 
 import pl.edu.wszib.http2.service.common.CrudResource;
 
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table
 public class Produkt implements CrudResource<Integer> {
 
+  @Id
+  @GeneratedValue
   private Integer id;
+  @Size(min = 3, max = 50)
+  @Pattern(regexp = "[a-zA-Z\\s]+")
+  @Column(nullable = false)
   private String nazwa;
+  @Column(nullable = false)
   private Integer ilosc;
+  @Column(nullable = false)
   private Float cena;
 
   @Override

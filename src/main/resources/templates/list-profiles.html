@@ -10,12 +10,15 @@
 <body>
 <div class="container">
     <a class="btn btn-primary" th:href="@{/profile/create}">Stwórz</a>
+    <a class="btn btn-secondary" th:each="p : ${plcie}"
+       th:href="@{/profile/list(plec=${p})}" th:text="'Pokaz '+${p}"></a>
     <table class="table">
         <thead>
         <tr>
             <td>#</td>
             <td>Imie</td>
             <td>Nazwisko</td>
+            <td>Płeć</td>
             <td>Akcje</td>
         </tr>
         </thead>
@@ -24,6 +27,7 @@
             <td th:text="${profile.id}"></td>
             <td th:text="${profile.imie}"></td>
             <td th:text="${profile.nazwisko}"></td>
+            <td th:text="${profile.plec}"></td>
             <td>
                 <a class="btn btn-primary" th:href="@{/profile/get(id=${profile.id})}">Otwórz</a>
                 <a class="btn btn-warning" th:href="@{/profile/update(id=${profile.id})}">Edytuj</a>
